@@ -16,6 +16,12 @@ app.prepare()
         //     const queryParams = { id: req.params.id }
         //     app.render(req, res, actualPage, queryParams);
         // })
+        server.get('/admins', (req, res) => {
+            app.render(req, res, '/admins')
+        })
+        server.get('/users', (req, res) => {
+            app.render(req, res, '/users')
+        })
         server.get('*', (req, res) => {
             return handle(req, res);
         })
