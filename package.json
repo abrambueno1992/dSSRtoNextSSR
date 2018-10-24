@@ -4,7 +4,10 @@
   "description": "Express SSR to Next.js SSR",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "dev": "node server.js",
+    "build": "next build",
+    "export": "next export",
+    "start": "NODE_ENV=production node server.js"
   },
   "repository": {
     "type": "git",
