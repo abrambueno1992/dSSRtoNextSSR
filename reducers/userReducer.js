@@ -4,6 +4,8 @@ export default (state = [], action) => {
     switch (action.type) {
         case FETCH_USERS:
             return action.payload.data;
+        case ERROR:
+            return action.payload
         default:
             return state;
     }
