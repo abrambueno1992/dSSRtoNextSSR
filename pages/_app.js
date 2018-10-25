@@ -8,7 +8,7 @@ import thunkMiddleware from 'redux-thunk';
 // import { BrowserRouter as Router } from 'react-router-dom';
 import reducer from '../reducers/'
 import { withRouter } from 'next/router'
-
+// import axios from 'axios';
 /**
 * @param {object} initialState
 * @param {boolean} options.isServer indicates whether it is a server side or client side

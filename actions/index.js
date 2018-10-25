@@ -13,7 +13,7 @@ export const fetchUsersAction = () => {
             method: 'GET',
             headers: {
               'Content-Type': 'application/json',
-            //   cookie: '' 
+            //   cookie: req.get('cookie') || '' 
             },
             // body: JSON.stringify({ hungry: true })
           })
@@ -91,7 +91,14 @@ export const fetchCurrentUser = () => async (dispatch) => {
 export const FETCH_ADMINS = 'FETCH_ADMINS';
 
 export const fetchAdminsAction = () => async (dispatch) => {
-    await fetch(baseURL + '/admins')
+    await fetch('/admins', {
+        method: 'GET',
+        headers: {
+          'Content-Type': 'application/json',
+        //   cookie: req.get('cookie') || '' 
+        },
+        // body: JSON.stringify({ hungry: true })
+      })
         .then((data) => {
             return data.json()
         })
