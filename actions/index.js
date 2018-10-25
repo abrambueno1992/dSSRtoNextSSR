@@ -1,12 +1,13 @@
-import fetch from 'isomorphic-unfetch'
+import fetch from 'isomorphic-unfetch';
 export const FETCH_USERS = 'FETCH_USERS';
 export const ERROR = 'ERROR';
 
 const baseURL = 'https://react-ssr-api.herokuapp.com';
 
-export const fetchUsersAction = (req) => {
+export const fetchUsersAction = () => {
     console.log('fired actin', baseURL + '/users')
     const url = baseURL + '/users';
+    
     return async (dispatch) => {
         await fetch(url, {
             method: 'GET',
@@ -16,22 +17,23 @@ export const fetchUsersAction = (req) => {
             },
             // body: JSON.stringify({ hungry: true })
           })
-            // .then((data) => {
-            //     return data.json()
-            // })
+            .then((data) => {
+                return data.json()
+            })
             .then((res) => {
+                console.log('success', res)
                 dispatch({
                     type: FETCH_USERS,
                     payload: res,
-                    nothing: false,
                 })
             })
             .catch(err => {
-                dispatch({
-                    type: ERROR,
-                    payload: err,
-                    nothing: true
-                })
+                console.log('fail', err)
+                // dispatch({
+                //     type: ERROR,
+                //     payload: err,
+                //     nothing: true
+                // })
             })
 
     }

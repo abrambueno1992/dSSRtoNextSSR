@@ -1,3 +1,4 @@
+// const proxy = require('express-http-proxy');
 const express = require('express');
 const next = require('next');
 
@@ -8,6 +9,13 @@ const handle = app.getRequestHandler();
 app.prepare()
     .then(() => {
         const server = express();
+
+        // server.use('/api', proxy('http://react-ssr-api.herokuapp.com', {
+        //     proxyReqOptDecorator(opts) {
+        //         opts.headers['x-forwarded-host'] = 'localhost:3000';
+        //         return opts;
+        //     }
+        // }))
         server.get('/', (req, res) => {
             app.render(req, res, '/');
         })

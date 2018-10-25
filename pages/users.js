@@ -9,11 +9,13 @@ class UsersList extends Component {
         super(props);
     }
     static async getInitialProps({ store, query, pathname }) {
-            await store.dispatch(fetchUsersAction())
-        
+        await store.dispatch(fetchUsersAction())
+
     }
     componentDidMount() {
-        this.props.fetchUsersAction();
+        if (this.props.users === null) {
+            // this.props.fetchUsersAction();
+        }
     }
 
     renderUsers() {
@@ -37,11 +39,11 @@ class UsersList extends Component {
                 <div>
                     {this.head()}
                     <ul>
-                        {/* {this.props.users.map(user => {
+                        {this.props.users.map(user => {
                             return (
                                 <li key={user.id}>{user.name}</li>
                             )
-                        }) */}
+                        })
                         }
                     </ul>
                 </div>
@@ -51,13 +53,13 @@ class UsersList extends Component {
                 <div>Loading...</div>
             )
         }
-        
+
     }
 }
 
 const maptDispatchToProps = dispatch => {
     return {
-        fetchUsersAction: bindActionCreators(fetchUsersAction, dispatch)
+        fetchUsersAction: bindActionCreators(fetchUsersAction, dispatch),
     }
 }
 
@@ -67,9 +69,7 @@ const mapStateToProps = state => {
     }
 }
 
-const loadData = (store) => {
-    return store.dispatch(fetchUsersAction());
-}
+
 // export default {
 //     loadData,
 //     component: connect(mapStateToProps, { fetchUsersAction })(UsersList)
